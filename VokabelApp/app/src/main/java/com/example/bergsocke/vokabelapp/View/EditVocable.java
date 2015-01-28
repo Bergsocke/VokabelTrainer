@@ -92,7 +92,7 @@ public class EditVocable extends ListActivity {
                                 vocableToUpdate.setTranslation(updatedTranslation.getText().toString());
                                 vocableToUpdate.setBoxNr(updatedBox.getText().toString());
 
-                                // update vocable
+                                // save the updated vocable to the database
                                 db.updateVocable(vocableToUpdate);
 
                                 // update ListView

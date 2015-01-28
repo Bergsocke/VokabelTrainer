@@ -25,12 +25,12 @@ public class TrainVocables extends Activity {
     private Button btn_mainMenu;
     private Button btn_showTranslation;
     private Button btn_nextWord;
-    private Button btn_cancel;
 
     private TextView theWord;
-    private TextView translation;
 
     private final Context context = this;
+
+    private MySQLiteHelper db = new MySQLiteHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,6 @@ public class TrainVocables extends Activity {
         Intent i = getIntent();
         String boxNr = i.getStringExtra("BoxNr");
 
-        MySQLiteHelper db = new MySQLiteHelper(this);
-
 
         // get all Vocables from selected Box
         List<Vocable> list = db.getAllVocablesBox(boxNr);
@@ -50,7 +48,6 @@ public class TrainVocables extends Activity {
 
         // textView vocable and translation
         theWord =(TextView)findViewById(R.id.txt_word);
-        translation = (TextView)findViewById(R.id.txt_translation);
 
 
         // show translation
@@ -74,13 +71,6 @@ public class TrainVocables extends Activity {
         });
 
 
-        btn_cancel = (Button)findViewById(R.id.btn_cancel);
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         // go to MainActivity
         btn_mainMenu = (Button)findViewById(R.id.btn_mainMenu);

@@ -54,7 +54,7 @@ public class DeleteVocable extends ListActivity {
                 // get vocable
                 Vocable vocableToDelete = adapter.getItem(position);
 
-                // delete vocable
+                // delete vocable from database
                 db.deleteVocable(vocableToDelete.getId());
 
                 // update ListView
