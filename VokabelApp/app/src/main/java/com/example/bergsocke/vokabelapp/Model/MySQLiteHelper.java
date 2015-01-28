@@ -17,15 +17,16 @@ import java.util.List;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    // Database Version
+    // Database version
     private static final int DATABASE_VERSION = 1;
-    // Database Name
+    // Database name
+
     private static final String DATABASE_NAME = "VocabelDB";
 
-    // Books table name
+    // Vocabulary table name
     private static final String TABLE_NAME = "vocabulary";
 
-    // Books Table Columns names
+    // Vocabulary table columns names
     private static final String KEY_ID = "id";
     private static final String KEY_THEWORD = "theWord";
     private static final String KEY_TRANSLATION = "translation";
@@ -47,31 +48,32 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_THEWORD +  " TEXT, "+ KEY_TRANSLATION +
                 " TEXT, " + KEY_BOXNR + " TEXT);";
 
-        // create books table
+        // create vocabulary table
         db.execSQL(CREATE_VOCABLE_TABLE);
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop older books table if existed
+        // Drop older vocabulary table if existed
         db.execSQL("DROP TABLE IF EXISTS vocabulary");
 
-        // create fresh vocable table
+        // create fresh vocabulary table
         this.onCreate(db);
     }
 
-    // open Database
+    // open database
     public void openDB() {
         db = this.getWritableDatabase();
     }
 
-    // close Database
+    // close database
     public void closeDB() {
         db.close();
     }
 
-    // insert a new vocable
+
+    // save the new vocable to the database
     public void addVocable(Vocable vocable){
 
         // get reference to writable DB
@@ -119,6 +121,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         vocable.setTranslation(cursor.getString(2));
         vocable.setBoxNr(cursor.getString(3));
 
+        // close the cursor
+        cursor.close();
+
         // return vocable
         return vocable;
     }
@@ -149,6 +154,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        // close the cursor
+        cursor.close();
+
         // close DB
         closeDB();
 
@@ -156,7 +164,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         return vocables;
     }
 
-    // Get all vocables
+    // Get all vocables from selected box
     public List<Vocable> getAllVocablesBox(String boxNr) {
 
         String boxNumber = boxNr;
@@ -183,6 +191,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 vocables.add(vocable);
             } while (cursor.moveToNext());
         }
+
+        // close the cursor
+        cursor.close();
 
         // close DB
         closeDB();
@@ -222,7 +233,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         // get reference to writable DB
         openDB();
 
-        // delete vocable
+        // delete vocable from database
         db.delete(TABLE_NAME,
                 KEY_ID+" = ?",
                 new String[] { String.valueOf(id)});

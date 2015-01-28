@@ -20,16 +20,6 @@
         android:layout_marginBottom="30dp"
         android:text="@string/txt_word"/>
 
-        <TextView
-            android:id="@+id/txt_translation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="30dp"
-            android:text="@string/txt_translation"/>
-
         </LinearLayout>
 
     <LinearLayout
@@ -48,11 +38,6 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_next"
             android:id="@+id/btn_nextWord"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_cancel"
-            android:id="@+id/btn_cancel"/>
 
         </LinearLayout>
 

@@ -86,7 +86,7 @@ public class AddVocables extends ListActivity {
 
                                 Vocable vocableNew = new Vocable(newWord, newTranslation, newBoxNr);
 
-                                // insert vocable
+                                // save the new vocable to the database
                                 db.addVocable(vocableNew);
 
                                 // update ListView
