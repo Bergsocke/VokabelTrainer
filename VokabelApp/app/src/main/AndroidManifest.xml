@@ -33,7 +33,6 @@
         <activity android:name=".View.DeleteVocable"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
 
-
         <activity android:name=".View.EditVocable"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
 

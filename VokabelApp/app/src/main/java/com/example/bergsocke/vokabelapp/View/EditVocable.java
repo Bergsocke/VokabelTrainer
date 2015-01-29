@@ -36,6 +36,11 @@ public class EditVocable extends ListActivity {
     private EditText updatedTranslation;
     private EditText updatedBox;
 
+    private EditText oldWorld;
+    private EditText oldTranslation;
+    private EditText oldBox;
+
+
     private MySQLiteHelper db = new MySQLiteHelper(this);
 
     private final Context context = this;
@@ -69,9 +74,9 @@ public class EditVocable extends ListActivity {
                 final View textEntry = inflater.inflate(R.layout.dialog_edit, null);
 
                 // AlertDialog Text mit alten Vokabeldaten vorbelegen
-                EditText oldWorld = (EditText) textEntry.findViewById(R.id.txt_word);
-                EditText oldTranslation = (EditText) textEntry.findViewById(R.id.txt_translation);
-                EditText oldBox = (EditText) textEntry.findViewById(R.id.txt_box);
+                oldWorld = (EditText) textEntry.findViewById(R.id.txt_word);
+                oldTranslation = (EditText) textEntry.findViewById(R.id.txt_translation);
+                oldBox = (EditText) textEntry.findViewById(R.id.txt_box);
 
                 oldWorld.setText(vocableToUpdate.getTheWord());
                 oldTranslation.setText(vocableToUpdate.getTranslation());
@@ -90,7 +95,19 @@ public class EditVocable extends ListActivity {
                                 // set new values
                                 vocableToUpdate.setTheWord(updatedWord.getText().toString());
                                 vocableToUpdate.setTranslation(updatedTranslation.getText().toString());
-                                vocableToUpdate.setBoxNr(updatedBox.getText().toString());
+
+                                // check new box nr.
+                                String tempBox = updatedBox.getText().toString();
+                                int nr = Integer.parseInt(tempBox);
+
+                                // if new box nr. > 3 don't change the box nr.
+                                if(nr < 3){
+                                    // set new value
+                                    vocableToUpdate.setBoxNr(updatedBox.getText().toString());
+                                }
+                                else {
+                                    // don't change the box nr
+                                }
 
                                 // save the updated vocable to the database
                                 db.updateVocable(vocableToUpdate);

@@ -84,6 +84,12 @@ public class AddVocables extends ListActivity {
                                 newTranslation = translation.getText().toString();
                                 newBoxNr = boxNr.getText().toString();
 
+                                int nr = Integer.parseInt(newBoxNr);
+
+                                if(nr > 3){
+                                    newBoxNr = "1";
+                                }
+
                                 Vocable vocableNew = new Vocable(newWord, newTranslation, newBoxNr);
 
                                 // save the new vocable to the database
