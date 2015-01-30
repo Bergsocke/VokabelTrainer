@@ -79,7 +79,6 @@ public class AddVocables extends ListActivity {
                                 translation = (EditText) textEntry.findViewById(R.id.txt_translation);
                                 boxNr = (EditText) textEntry.findViewById(R.id.txt_box);
 
-
                                 newWord = theWord.getText().toString();
                                 newTranslation = translation.getText().toString();
                                 newBoxNr = boxNr.getText().toString();

@@ -38,15 +38,13 @@ public class TrainVocables extends Activity {
 
     private MySQLiteHelper db = new MySQLiteHelper(this);
 
-    private Random randomGenerator;
-
     private List<Vocable> list;
     private Vocable trainVocable;
 
     private String boxNr;
-
+    private Random randomGenerator;
     private int index;
-
+    private int listSize;
 
 
     @Override
@@ -58,13 +56,14 @@ public class TrainVocables extends Activity {
         Intent i = getIntent();
         boxNr = i.getStringExtra("BoxNr");
 
-
         // get all Vocables from selected Box
         list = db.getAllVocablesBox(boxNr);
 
-        this.createRandomVocable();
+        // show a vocable on view
+        showRandomVocable();
 
-        // go to MainActivity
+
+        // Button go to MainActivity
         btn_mainMenu = (Button) findViewById(R.id.btn_mainMenu);
         btn_mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,53 +75,22 @@ public class TrainVocables extends Activity {
 
     }
 
-    // create random vocable
-    public void createRandomVocable(){
+
+    // show random vocable
+    public void showRandomVocable(){
 
         // get list size
-        int sizeList = list.size();
+        listSize = list.size();
 
         // if vocable box is not empty and there are more vocable than one
-        if (sizeList > 1) {
-
-            // get random vocable from list
-            randomGenerator = new Random();
-            index = randomGenerator.nextInt(list.size());
-            trainVocable = list.get(index);
-
-
-            // show random vocable on the view
-            theWord = (TextView) findViewById(R.id.txt_word);
-            theWord.setText(trainVocable.getTheWord());
-
-            // Button btn_showTranslation
-            btn_showTranslation = (Button) findViewById(R.id.btn_showTranslation);
-            btn_showTranslation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // create AlertDialog and show translation
-                    list.remove(trainVocable);
-                    createDialogWindow();
-
-                }
-            });
-
-            // Button next word - select an other word
-            btn_nextWord = (Button) findViewById(R.id.btn_nextWord);
-            btn_nextWord.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // got to an other vocable
-                    list.remove(trainVocable);
-                    createRandomVocable();
-
-                }
-            });
+        if (listSize > 1) {
+            // create a random vocable from list
+            createRandomVocable();
         }
         // if only one vocable is in the box
-        else if(sizeList == 1){
+        else if(listSize == 1){
 
-            // get vocable from location 0
+            // get this vocable from location 0
             trainVocable = list.get(0);
 
             // show random vocable on the view
@@ -147,12 +115,12 @@ public class TrainVocables extends Activity {
 
         }
         // if vocable box is empty
-        else if(sizeList == 0) {
+        else if(listSize == 0) {
 
             // show message
             theWord = (TextView) findViewById(R.id.txt_word);
             theWord.setTextColor(Color.parseColor("#FF0000"));
-            theWord.setText("Die Box ist leer");
+            theWord.setText(R.string.txt_empty);
 
             // deactivate Buttons translation and next
             btn_showTranslation = (Button) findViewById(R.id.btn_showTranslation);
@@ -165,6 +133,46 @@ public class TrainVocables extends Activity {
         }
     }
 
+    // create a random vocable from list
+    public void createRandomVocable(){
+
+        randomGenerator = new Random();
+        // create random number
+        index = randomGenerator.nextInt(list.size());
+        // get random vocable
+        trainVocable = list.get(index);
+
+        // show random vocable on the view
+        theWord = (TextView) findViewById(R.id.txt_word);
+        theWord.setText(trainVocable.getTheWord());
+
+        // Button btn_showTranslation
+        btn_showTranslation = (Button) findViewById(R.id.btn_showTranslation);
+        btn_showTranslation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                list.remove(trainVocable);
+                // create AlertDialog and show translation
+                createDialogWindow();
+
+            }
+        });
+
+        // Button next word - select an other word
+        btn_nextWord = (Button) findViewById(R.id.btn_nextWord);
+        btn_nextWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                list.remove(trainVocable);
+                // go to an other vocable
+                showRandomVocable();
+
+            }
+        });
+    }
+
     // create and show AlertDialog
     public void createDialogWindow(){
 
@@ -175,32 +183,35 @@ public class TrainVocables extends Activity {
         theWord = (TextView) textEntry.findViewById(R.id.txt_word);
         translation = (TextView) textEntry.findViewById(R.id.txt_translation);
 
-        // set values
+        // set values into TextView fields
         theWord.setText(trainVocable.getTheWord());
         translation.setText(trainVocable.getTranslation());
 
         // AlertDialog to show translation
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setView(textEntry)
-                        // if translation is correct -> move vocable to next box
+                 // if translation is correct -> move vocable to next box
                 .setPositiveButton(R.string.btn_correct, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-
-                        int boxNr = Integer.parseInt(trainVocable.getBoxNr());
-                        if (boxNr < 3) {
-                            boxNr++;
-                            trainVocable.setBoxNr(String.valueOf(boxNr));
+                        // get actual box number
+                        int boxNumber = Integer.parseInt(boxNr);
+                        // if box number not greater than 3, change box number
+                        // if boxnumer is 3, don't change the box number, because there is no box 4
+                        if (boxNumber < 3) {
+                            boxNumber++;
+                            trainVocable.setBoxNr(String.valueOf(boxNumber));
                             // save updated vocable in DB
                             db.updateVocable(trainVocable);
                             // vocable remove from list
                             list.remove(trainVocable);
                         }
+                        // show the next vocable
+                        showRandomVocable();
                     }
                 })
-                        // if translation ist not correct
+                // if translation ist not correct
                 .setNegativeButton(R.string.btn_not_correct, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -208,10 +219,14 @@ public class TrainVocables extends Activity {
                         dialog.cancel();
                         // vocable delete from list
                         list.remove(trainVocable);
+                        // show the next vocable
+                        showRandomVocable();
                     }
                 });
 
+        // create DialogAlert
         builder.create();
+        // show DialogAlert
         builder.show();
 
     }
