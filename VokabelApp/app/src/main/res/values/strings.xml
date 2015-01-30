@@ -38,5 +38,7 @@
     <string name="btn_correct">Richtig</string>
     <string name="btn_not_correct">Falsch</string>
 
+    <string name="txt_empty">Die Box ist leer. Alle Vokabeln sind abgearbeitet worden</string>
+
 
 </resources>
