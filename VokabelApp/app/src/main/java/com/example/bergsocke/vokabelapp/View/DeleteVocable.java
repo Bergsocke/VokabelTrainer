@@ -17,7 +17,7 @@ import com.example.bergsocke.vokabelapp.R;
 import java.util.List;
 
 /**
- * delete selected vocable
+ * Activity to delete selected vocable
  *
  * Created by Bergsocke on 04.01.15.
  */

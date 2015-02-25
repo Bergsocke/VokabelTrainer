@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.example.bergsocke.vokabelapp.R;
 
 /**
- * select vocable box
+ * Activity to select vocable box
  *
  * Created by Bergsocke on 04.01.15.
  *

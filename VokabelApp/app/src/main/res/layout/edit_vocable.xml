@@ -6,6 +6,9 @@
     android:weightSum="1">
 
     <TextView android:text="@string/txt_selectItem" android:layout_width="wrap_content"
+        android:layout_marginBottom="20px"
+        android:textStyle="bold"
+        android:textColor="#ffff0000"
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
 

@@ -1,7 +1,8 @@
 package com.example.bergsocke.vokabelapp.Model;
 
 /**
- * vocable class
+ * Die Klasse "Vocable" ist für die Erfassung und Rückgabe des Inhalts der
+ * einzelnen Vokabel-Datensätze zuständig
  *
  * Created by Bergsocke on 04.01.15.
  */
@@ -9,14 +10,15 @@ package com.example.bergsocke.vokabelapp.Model;
 public class Vocable {
 
     private int id;
-    private String theWord;
-    private String translation;
+    private String theWord;         // Vokabel
+    private String translation;     // Übersetzung
     private String boxNr;
 
     public Vocable(){
 
     }
 
+    // Konstruktor
     public Vocable(String theWord, String translation, String boxNr) {
         super();
         this.theWord = theWord;
@@ -25,7 +27,6 @@ public class Vocable {
     }
 
     // Getter and Setter
-
     public int getId() {
         return id;
     }
@@ -54,7 +55,7 @@ public class Vocable {
         this.boxNr = boxNr;
     }
 
-    // Will be used by the ArrayAdapter in the ListView
+    // Wird vom ArrayAdapter in der ListView verwendet
     public String toString() {
         return id + ": " + theWord + ", " + translation + ", " + boxNr;
     }

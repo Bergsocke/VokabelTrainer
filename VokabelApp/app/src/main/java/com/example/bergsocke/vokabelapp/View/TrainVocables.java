@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * train vocables
+ * Activity to train vocables
  *
  * Created by Bergsocke on 25.01.15.
  */
@@ -39,7 +39,7 @@ public class TrainVocables extends Activity {
     private MySQLiteHelper db = new MySQLiteHelper(this);
 
     private List<Vocable> list;
-    private Vocable trainVocable;
+    private Vocable trainVocable;       // aktuelle Vokabel
 
     private String boxNr;
     private Random randomGenerator;
@@ -82,18 +82,19 @@ public class TrainVocables extends Activity {
         // get list size
         listSize = list.size();
 
-        // if vocable box is not empty and there are more vocable than one
+        // Prüfung, ob die Liste mehr als eine Vokabel beinhaltet
         if (listSize > 1) {
             // create a random vocable from list
             createRandomVocable();
         }
-        // if only one vocable is in the box
+        // Wenn die Liste nur eine Vokabel beinhaltet, wird der Next-Button (zum Anzeigen
+        // weiterer Vokabeln) deaktiviert
         else if(listSize == 1){
 
             // get this vocable from location 0
             trainVocable = list.get(0);
 
-            // show random vocable on the view
+            // show vocable on the view
             theWord = (TextView) findViewById(R.id.txt_word);
             theWord.setText(trainVocable.getTheWord());
 
@@ -114,7 +115,8 @@ public class TrainVocables extends Activity {
             btn_nextWord.setVisibility(View.INVISIBLE);
 
         }
-        // if vocable box is empty
+        // Ist die Liste leer, wird ausgegeben, dass die Box leer ist bzw. alle Vokabeln der
+        // Box bereits abgearbeitet sind
         else if(listSize == 0) {
 
             // show message
@@ -152,20 +154,26 @@ public class TrainVocables extends Activity {
             @Override
             public void onClick(View v) {
 
+                // beim Klick auf den Button showTranslation, wird die aktuelle Vokabel
+                // aus der Liste entfernt (wird als abgearbeitet bewertet)
                 list.remove(trainVocable);
+
                 // create AlertDialog and show translation
                 createDialogWindow();
 
             }
         });
 
-        // Button next word - select an other word
+        // Button next word - show an other word
         btn_nextWord = (Button) findViewById(R.id.btn_nextWord);
         btn_nextWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                // beim Klick auf den Button showTranslation, wird die aktuelle Vokabel
+                // aus der list entfernt (wird als abgearbeitet bewertet)
                 list.remove(trainVocable);
+
                 // go to an other vocable
                 showRandomVocable();
 

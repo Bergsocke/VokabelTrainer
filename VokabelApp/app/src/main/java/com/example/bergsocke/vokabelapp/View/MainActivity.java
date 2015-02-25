@@ -28,24 +28,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Button - Vokabel trainieren
         btn_train = (Button)findViewById(R.id.btn_train);
         btn_train.setOnClickListener(this);
 
+        // Button - Anzeige aller vorhandenen Vokabeln
         btn_showAll = (Button)findViewById(R.id.btn_showAll);
         btn_showAll.setOnClickListener(this);
 
+        // Button - Vokabel hinzufügen
         btn_add = (Button)findViewById(R.id.btn_add);
         btn_add.setOnClickListener(this);
 
+        // Button - Vokabel ändern
         btn_edit = (Button)findViewById(R.id.btn_edit);
         btn_edit.setOnClickListener(this);
 
+        // Button - Vokabel löschen
         btn_delete = (Button)findViewById(R.id.btn_delete);
         btn_delete.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+
+        // Intents, um Aktivitäten innerhalb einer Anwendung aufzurufen
 
         if (v == btn_train){
             Intent intent = new Intent(this, SelectBox.class);

@@ -15,7 +15,7 @@ import com.example.bergsocke.vokabelapp.R;
 import java.util.List;
 
 /**
- * Show all vocables
+ * Activity to show all vocables
  *
  * Created by Bergsocke on 04.01.15.
  */

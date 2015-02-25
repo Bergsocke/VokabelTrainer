@@ -7,6 +7,9 @@
 
     <TextView android:text="@string/txt_selectItem" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:textColor="#ffff0000"
         android:id="@+id/textView" />
 
     <ListView

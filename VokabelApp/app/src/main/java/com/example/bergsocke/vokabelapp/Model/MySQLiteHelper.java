@@ -11,36 +11,40 @@ import java.util.List;
 
 /**
  * SQLiteHelper
+ * Die Klasse "MySQLiteHelper" bietet die Methoden zum Anzeigen, Speichern und
+ * Löschen von Datensätzen der Tabelle "vocabulary"
  *
  * Created by Bergsocke on 22.01.15.
  */
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    // Database version
+    // Datenbank-Version
     private static final int DATABASE_VERSION = 1;
-    // Database name
 
+    // Datenbank-Name
     private static final String DATABASE_NAME = "VocabelDB";
 
-    // Vocabulary table name
+    // Tabellen-Name
     private static final String TABLE_NAME = "vocabulary";
 
-    // Vocabulary table columns names
+    // Spaltennamen der Tabelle
     private static final String KEY_ID = "id";
     private static final String KEY_THEWORD = "theWord";
     private static final String KEY_TRANSLATION = "translation";
     private static final String KEY_BOXNR = "boxNr";
 
-    private static final String[] COLUMNS = {KEY_ID, KEY_THEWORD, KEY_TRANSLATION, KEY_BOXNR};
-
+    // SQLiteDatabase
     private SQLiteDatabase db;
 
 
+
+    // Konstruktor
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // Datenbank neu erstellen
     @Override
     public void onCreate(SQLiteDatabase db) {
         // SQL statement to create vocable table
@@ -52,7 +56,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_VOCABLE_TABLE);
     }
 
-
+    // Datenbank Upgrade
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older vocabulary table if existed
@@ -73,7 +77,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     }
 
 
-    // save the new vocable to the database
+    // speichert eine neue Vokabel in die Datenbank
     public void addVocable(Vocable vocable){
 
         // get reference to writable DB
@@ -86,61 +90,28 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         values.put(KEY_BOXNR, vocable.getBoxNr());
 
         // insert vocable
-        db.insert(TABLE_NAME, // table
-                null, //nullColumnHack
-                values); // key/value -> keys = column names/ values = column values
+        db.insert(TABLE_NAME, null, values);
 
         // close DB
         closeDB();
     }
 
-    public Vocable getVocable(int id){
-
-        // get reference to writable DB
-        openDB();
-
-        // build query
-        Cursor cursor =
-                db.query(TABLE_NAME, // a. table
-                        COLUMNS, // b. column names
-                        " id = ?", // c. selections
-                        new String[] { String.valueOf(id) }, // d. selections args
-                        null, // e. group by
-                        null, // f. having
-                        null, // g. order by
-                        null); // h. limit
-
-        // if we got results get the first one
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        // build vocable object
-        Vocable vocable = new Vocable();
-        vocable.setId(Integer.parseInt(cursor.getString(0)));
-        vocable.setTheWord(cursor.getString(1));
-        vocable.setTranslation(cursor.getString(2));
-        vocable.setBoxNr(cursor.getString(3));
-
-        // close the cursor
-        cursor.close();
-
-        // return vocable
-        return vocable;
-    }
 
     // Get all vocables
     public List<Vocable> getAllVocables() {
         List<Vocable> vocables = new LinkedList<Vocable>();
 
         // build the query
-        String query = "SELECT  * FROM " + TABLE_NAME, KE;
+        String query = "SELECT  * FROM " + TABLE_NAME;
 
         // get reference to writable DB
         openDB();
+
         Cursor cursor = db.rawQuery(query, null);
 
-        // go over each row, build vocable and add it to list
         Vocable vocable = null;
+
+        // go over each row, build vocable and add it to list
         if (cursor.moveToFirst()) {
             do {
                 vocable = new Vocable();
@@ -175,10 +146,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         // get reference to writable DB
         openDB();
+
         Cursor cursor = db.rawQuery(query,null);
 
-        // go over each row, build vocable and add it to list
         Vocable vocable = null;
+
+        // go over each row, build vocable and add it to list
         if (cursor.moveToFirst()) {
             do {
                 vocable = new Vocable();
@@ -217,10 +190,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         values.put(KEY_BOXNR, vocable.getBoxNr());
 
         // updating row
-        db.update(TABLE_NAME, //table
-                values, // column/value
-                KEY_ID+" = ?", // selections
-                new String[] { String.valueOf(vocable.getId()) }); //selection args
+        db.update(TABLE_NAME,       //table
+                values,             // column/value
+                KEY_ID + " = ?",    // selections
+                new String[] { String.valueOf(vocable.getId()) });  //selection args
 
         // close DB
         closeDB();
@@ -234,13 +207,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         openDB();
 
         // delete vocable from database
-        db.delete(TABLE_NAME,
-                KEY_ID+" = ?",
-                new String[] { String.valueOf(id)});
+        db.delete(TABLE_NAME, KEY_ID + " = ?", new String[] { String.valueOf(id)});
 
         // close DB
        closeDB();
 
     }
-
 }
