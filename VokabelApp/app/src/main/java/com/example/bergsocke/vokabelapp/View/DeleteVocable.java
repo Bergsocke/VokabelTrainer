@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,15 +61,17 @@ public class DeleteVocable extends ListActivity {
                 // delete vocable from database
                 db.deleteVocable(vocableToDelete.getId());
 
-                // Messagebox, dass Vocabel gelöscht wurde
-                Toast.makeText(context, context.getString(R.string.txt_delete), Toast.LENGTH_SHORT).show();
+                // Message, dass Vokabel gelöscht wurde
+                Toast message = Toast.makeText(context, context.getString(R.string.txt_delete), Toast.LENGTH_SHORT);
+                message.setGravity(Gravity.CENTER_HORIZONTAL,0,0);
+                message.show();
 
                 // update ListView
                 adapter.remove(vocableToDelete);
                 adapter.notifyDataSetChanged();
-
             }
         });
+
 
         // go to MainActivity
         btn_mainMenu = (Button)findViewById(R.id.btn_mainMenu);

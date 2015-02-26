@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff0f7aa"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,21 +13,33 @@
         android:weightSum="1">
 
         <TextView
-        android:id="@+id/txt_word"
-        android:layout_width="291dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
-        android:background="#BABABA"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:text="@string/txt_word"
-            android:layout_weight="0.15" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Vocabel:"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/textView2"
+            android:layout_weight="0.15"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/txt_word"
+            android:layout_width="291dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="10dp"
+            android:background="#fffacb6e"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="35dp"
+            android:text="@string/txt_word"
+            android:layout_weight="0.15"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,16 +48,18 @@
         android:layout_weight="0.41">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
             android:text="@string/btn_showTranslation"
             android:id="@+id/btn_showTranslation"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:layout_marginStart="63dp" />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
             android:text="@string/btn_next"
             android:id="@+id/btn_nextWord"
             android:layout_centerVertical="true"

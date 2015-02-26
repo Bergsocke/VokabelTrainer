@@ -31,9 +31,9 @@
 
     <string name="txt_selectItem">Vokabel auswählen/anklicken</string>
 
-    <string name="btn_showTranslation">Übersetzung</string>
+    <string name="btn_showTranslation">Übersetzung anzeigen</string>
     <string name="btn_trainEnd">Training beenden</string>
-    <string name="btn_next">Anderes Wort</string>
+    <string name="btn_next">Nächste Vokabel anzeigen</string>
 
     <string name="btn_correct">Richtig</string>
     <string name="btn_not_correct">Falsch</string>
