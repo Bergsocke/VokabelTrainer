@@ -2,19 +2,17 @@
 <resources>
 
     <string name="app_name">VokabelApp</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
     <string name="btn_train">Vokabel trainieren</string>
     <string name="btn_edit">Vokabeln bearbeiten</string>
-    <string name="btn_add_vocable">Vokabeln hinzufuegen</string>
+    <string name="btn_add_vocable">Vokabeln hinzufügen</string>
     <string name="btn_delete_vocable">Vokabeln löschen</string>
     <string name="btn_showAll">Alle Vokabeln anzeigen</string>
 
     <string name="btn_box1">Box 1</string>
     <string name="btn_box2">Box 2</string>
     <string name="btn_box3">Box 3</string>
-    <string name="hello" />
 
     <string name="txt_word">Vocabel eingeben</string>
     <string name="txt_translation">Übersetzung eingeben</string>
@@ -26,13 +24,12 @@
     <string name="btn_add">Vokabel hinzufügen</string>
     <string name="btn_delete">Vokabel löschen</string>
 
-    <string name="btn_mainMenu">Hauptmenue</string>
+    <string name="btn_mainMenu">Startmenü</string>
     <string name="btn_start">Start Training</string>
 
     <string name="txt_selectItem">Vokabel auswählen/anklicken</string>
 
     <string name="btn_showTranslation">Übersetzung anzeigen</string>
-    <string name="btn_trainEnd">Training beenden</string>
     <string name="btn_next">Nächste Vokabel anzeigen</string>
 
     <string name="btn_correct">Richtig</string>
