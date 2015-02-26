@@ -14,8 +14,9 @@ public class Vocable {
     private String translation;     // Übersetzung
     private String boxNr;
 
-    public Vocable(){
 
+    // Konstruktor
+    public Vocable(){
     }
 
     // Konstruktor
@@ -25,6 +26,7 @@ public class Vocable {
         this.translation = translation;
         this.boxNr = boxNr;
     }
+
 
     // Getter and Setter
     public int getId() {
@@ -55,7 +57,7 @@ public class Vocable {
         this.boxNr = boxNr;
     }
 
-    // Wird vom ArrayAdapter in der ListView verwendet
+    // Will be used by the ArrayAdapter in the ListView
     public String toString() {
         return id + ": " + theWord + ", " + translation + ", " + boxNr;
     }

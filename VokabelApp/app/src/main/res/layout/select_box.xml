@@ -8,10 +8,12 @@
     <TextView android:text="@string/txt_selectBox" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="#ffff0000"
         android:id="@+id/textView" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_box1"
         android:id="@+id/btn_box1"
@@ -20,14 +22,14 @@
         android:layout_marginTop="38dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_box3"
         android:id="@+id/btn_box3"
         android:layout_centerVertical="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_box2"
         android:id="@+id/btn_box2"

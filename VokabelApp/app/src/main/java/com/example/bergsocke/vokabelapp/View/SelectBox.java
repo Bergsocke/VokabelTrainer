@@ -21,6 +21,7 @@ public class SelectBox extends Activity implements View.OnClickListener{
     private Button btn_box2;
     private Button btn_box3;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class SelectBox extends Activity implements View.OnClickListener{
         btn_box3.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
 
@@ -45,25 +47,22 @@ public class SelectBox extends Activity implements View.OnClickListener{
             // send boxNr to view TrainVocables
             intent.putExtra("BoxNr", boxNr);
             startActivity(intent);
-
         }
+
         else if (v == btn_box2) {
             String boxNr = "2";
             Intent intent = new Intent(this, TrainVocables.class);
             // send boxNr to view TrainVocables
             intent.putExtra("BoxNr", boxNr);
             startActivity(intent);
-
-
         }
+
         else if (v == btn_box3) {
             String boxNr = "3";
             Intent intent = new Intent(this, TrainVocables.class);
             // send boxNr to view TrainVocables
             intent.putExtra("BoxNr", boxNr);
             startActivity(intent);
-
         }
-
     }
 }

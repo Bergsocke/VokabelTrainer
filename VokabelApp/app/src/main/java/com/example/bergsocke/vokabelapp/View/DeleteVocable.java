@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.bergsocke.vokabelapp.Model.MySQLiteHelper;
 import com.example.bergsocke.vokabelapp.Model.Vocable;
@@ -21,6 +22,8 @@ import java.util.List;
  *
  * Created by Bergsocke on 04.01.15.
  */
+
+// ListActivity - class for Activities that feature a ListView bound to a data source
 
 public class DeleteVocable extends ListActivity {
 
@@ -57,6 +60,9 @@ public class DeleteVocable extends ListActivity {
                 // delete vocable from database
                 db.deleteVocable(vocableToDelete.getId());
 
+                // Messagebox, dass Vocabel gelöscht wurde
+                Toast.makeText(context, context.getString(R.string.txt_delete), Toast.LENGTH_SHORT).show();
+
                 // update ListView
                 adapter.remove(vocableToDelete);
                 adapter.notifyDataSetChanged();
@@ -73,6 +79,5 @@ public class DeleteVocable extends ListActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

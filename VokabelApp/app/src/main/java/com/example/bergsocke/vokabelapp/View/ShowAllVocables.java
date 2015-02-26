@@ -20,6 +20,8 @@ import java.util.List;
  * Created by Bergsocke on 04.01.15.
  */
 
+// ListActivity - class for Activities that feature a ListView bound to a data source
+
 public class ShowAllVocables extends ListActivity {
 
 
@@ -27,13 +29,13 @@ public class ShowAllVocables extends ListActivity {
 
     private final Context context = this;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_vocables);
 
         MySQLiteHelper db = new MySQLiteHelper(this);
-
 
         // get all Vocables
         List<Vocable> list = db.getAllVocables();
@@ -51,7 +53,5 @@ public class ShowAllVocables extends ListActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }

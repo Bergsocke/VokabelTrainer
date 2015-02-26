@@ -9,10 +9,13 @@ import android.widget.Button;
 import com.example.bergsocke.vokabelapp.R;
 
 /**
- * Main Activity
+ * Main (Start) Activity
  *
  * Created by Bergsocke on 04.01.15.
  */
+
+// Activites sind Klassen, die jeweils App-Bildschirme verwalten
+// organisiert die Layouts und den Zugriff auf die darin enthaltenen Views
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -49,6 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_delete.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
 
@@ -74,7 +78,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Intent intent = new Intent(this, DeleteVocable.class);
             startActivity(intent);
         }
-
     }
-
 }
