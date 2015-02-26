@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
         else if (v == btn_showAll) {
-            Intent intent = new Intent(this,ShowAllVocables.class);
+            Intent intent = new Intent(this, ShowAllVocables.class);
             startActivity(intent);
         }
         else if (v == btn_add) {

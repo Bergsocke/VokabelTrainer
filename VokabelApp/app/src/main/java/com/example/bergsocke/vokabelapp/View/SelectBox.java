@@ -44,7 +44,7 @@ public class SelectBox extends Activity implements View.OnClickListener{
         if (v == btn_box1){
             String boxNr = "1";
             Intent intent = new Intent(this, TrainVocables.class);
-            // send boxNr to view TrainVocables
+            // send boxNr to TrainVocables.java
             intent.putExtra("BoxNr", boxNr);
             startActivity(intent);
         }
@@ -52,7 +52,7 @@ public class SelectBox extends Activity implements View.OnClickListener{
         else if (v == btn_box2) {
             String boxNr = "2";
             Intent intent = new Intent(this, TrainVocables.class);
-            // send boxNr to view TrainVocables
+            // send boxNr to TrainVocables.java
             intent.putExtra("BoxNr", boxNr);
             startActivity(intent);
         }
@@ -60,7 +60,7 @@ public class SelectBox extends Activity implements View.OnClickListener{
         else if (v == btn_box3) {
             String boxNr = "3";
             Intent intent = new Intent(this, TrainVocables.class);
-            // send boxNr to view TrainVocables
+            // send boxNr to TrainVocables.java
             intent.putExtra("BoxNr", boxNr);
             startActivity(intent);
         }
