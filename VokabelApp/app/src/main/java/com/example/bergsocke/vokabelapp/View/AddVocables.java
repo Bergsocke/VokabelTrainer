@@ -20,7 +20,7 @@ import com.example.bergsocke.vokabelapp.R;
 import java.util.List;
 
 /**
- * Insert new vocable into database
+ * Acitvity to insert new vocable into database
  *
  * Created by Bergsocke on 04.01.15.
  */
@@ -64,24 +64,30 @@ public class AddVocables extends ListActivity {
             @Override
             public void onClick(View v) {
 
-                // Create and show AlertDialog
+                // Erzeugung AlertDialog, um neue Daten eingeben zu können
 
                 LayoutInflater inflater = LayoutInflater.from(context);
                 final View textEntry = inflater.inflate(R.layout.dialog_edit, null);
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context)
                         .setView(textEntry)
+                        // Speicher-Button
                         .setPositiveButton(R.string.btn_save, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
 
+                                // EditText-Felder
                                 theWord = (EditText) textEntry.findViewById(R.id.txt_word);
                                 translation = (EditText) textEntry.findViewById(R.id.txt_translation);
                                 boxNr = (EditText) textEntry.findViewById(R.id.txt_box);
 
+                                // den String-Variablen werden die Werte der EditText-Feldern zugewiesen
                                 newWord = theWord.getText().toString();
                                 newTranslation = translation.getText().toString();
                                 newBoxNr = boxNr.getText().toString();
+
+                                // Prüfung der Box-Nummer
+                                // Ist der Wert höher als "3" wird die Boxnummer automatisch auf "1" festgelegt
 
                                 int nr = Integer.parseInt(newBoxNr);
 
@@ -89,6 +95,7 @@ public class AddVocables extends ListActivity {
                                     newBoxNr = "1";
                                 }
 
+                                // Vocable-Objekt die Werte zuweisen
                                 Vocable vocableNew = new Vocable(newWord, newTranslation, newBoxNr);
 
                                 // save the new vocable to the database
@@ -100,6 +107,7 @@ public class AddVocables extends ListActivity {
 
                             }
                         })
+                        // Abbrechen-Button
                         .setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {

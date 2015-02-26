@@ -21,7 +21,7 @@ import com.example.bergsocke.vokabelapp.R;
 import java.util.List;
 
 /**
- * Update selected vovable
+ * Activity to update selected vovable
  *
  * Created by Bergsocke on 04.01.15.
  */
@@ -68,8 +68,6 @@ public class EditVocable extends ListActivity {
 
                 vocableToUpdate = adapter.getItem(position);
 
-                // Create and show AlertDialog
-
                 LayoutInflater inflater = LayoutInflater.from(context);
                 final View textEntry = inflater.inflate(R.layout.dialog_edit, null);
 
@@ -82,6 +80,7 @@ public class EditVocable extends ListActivity {
                 oldTranslation.setText(vocableToUpdate.getTranslation());
                 oldBox.setText(vocableToUpdate.getBoxNr());
 
+                // Erzeugung AlertDialog, um Daten ändern zu können
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context)
                         .setView(textEntry)
                         .setPositiveButton(R.string.btn_save, new DialogInterface.OnClickListener() {
@@ -100,7 +99,8 @@ public class EditVocable extends ListActivity {
                                 String tempBox = updatedBox.getText().toString();
                                 int nr = Integer.parseInt(tempBox);
 
-                                // if new box nr. > 3 don't change the box nr.
+                                // Prüfung, ob Boxnummer nicht größer als "3" ist
+                                // ist die Boxnummer > 3, wird der neue Wert nicht übernommen
                                 if(nr < 3){
                                     // set new value
                                     vocableToUpdate.setBoxNr(updatedBox.getText().toString());
