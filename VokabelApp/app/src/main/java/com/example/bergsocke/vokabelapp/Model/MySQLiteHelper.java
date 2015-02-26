@@ -48,7 +48,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // SQL statement to create vocabulary table
         String CREATE_VOCABLE_TABLE = "CREATE TABLE " + TABLE_NAME + "( " + KEY_ID +
-                " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_THEWORD +  " TEXT, "+ KEY_TRANSLATION +
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_THEWORD +  " TEXT, " + KEY_TRANSLATION +
                 " TEXT, " + KEY_BOXNR + " TEXT);";
 
         // create vocabulary table
@@ -167,7 +167,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 
     // speichert eine neue Vokabel in die Datenbank
-    public void addVocable(Vocable vocable){
+    public void addVocable(Vocable vocable) {
 
         // get reference to writable DB
         openDB();

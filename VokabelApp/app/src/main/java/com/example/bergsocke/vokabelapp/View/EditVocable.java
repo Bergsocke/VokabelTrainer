@@ -75,7 +75,7 @@ public class EditVocable extends ListActivity {
                 LayoutInflater inflater = LayoutInflater.from(context);
                 final View textEntry = inflater.inflate(R.layout.dialog_edit, null);
 
-                // AlertDialog Text mit alten Vokabeldaten vorbelegen
+                // AlertDialog Text mit derzeitigen Vokabeldaten vorbelegen
                 oldWorld = (EditText) textEntry.findViewById(R.id.txt_word);
                 oldTranslation = (EditText) textEntry.findViewById(R.id.txt_translation);
                 oldBox = (EditText) textEntry.findViewById(R.id.txt_box);

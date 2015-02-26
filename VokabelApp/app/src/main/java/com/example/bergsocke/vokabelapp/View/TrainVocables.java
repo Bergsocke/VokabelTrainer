@@ -52,7 +52,7 @@ public class TrainVocables extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.train_vocables);
 
-        // get BoxNr from View SelectBox
+        // get BoxNr from SelectBox.java
         Intent i = getIntent();
         boxNr = i.getStringExtra("BoxNr");
 
@@ -75,7 +75,7 @@ public class TrainVocables extends Activity {
 
 
     // show random vocable
-    public void showRandomVocable(){
+    public void showRandomVocable() {
 
         // get list size
         listSize = list.size();
@@ -108,7 +108,7 @@ public class TrainVocables extends Activity {
                 }
             });
 
-            // deactivate next-Button
+            // deactivate Button nextWord
             btn_nextWord = (Button) findViewById(R.id.btn_nextWord);
             btn_nextWord.setEnabled(false);
             btn_nextWord.setVisibility(View.INVISIBLE);
@@ -123,7 +123,7 @@ public class TrainVocables extends Activity {
             theWord.setTextSize(15);
             theWord.setText(R.string.txt_empty);
 
-            // deactivate Buttons translation and next
+            // deactivat Button showTranslation and nextWord
             btn_showTranslation = (Button) findViewById(R.id.btn_showTranslation);
             btn_showTranslation.setEnabled(false);
             btn_showTranslation.setVisibility(View.INVISIBLE);
@@ -135,7 +135,7 @@ public class TrainVocables extends Activity {
 
 
     // create a random vocable from list
-    public void createRandomVocable(){
+    public void createRandomVocable() {
 
         randomGenerator = new Random();
         // create random number
@@ -154,7 +154,7 @@ public class TrainVocables extends Activity {
             public void onClick(View v) {
 
                 // beim Klick auf den Button showTranslation, wird die aktuelle Vokabel
-                // aus der Liste entfernt (wird als abgearbeitet bewertet)
+                // aus der Liste entfernt (wird als abgearbeitet betrachtet)
                 list.remove(trainVocable);
 
                 // create AlertDialog and show translation
@@ -169,7 +169,7 @@ public class TrainVocables extends Activity {
             public void onClick(View v) {
 
                 // beim Klick auf den Button showTranslation, wird die aktuelle Vokabel
-                // aus der list entfernt (wird als abgearbeitet bewertet)
+                // aus der list entfernt (wird als abgearbeitet betrachtet)
                 list.remove(trainVocable);
 
                 // go to an other vocable
@@ -180,7 +180,7 @@ public class TrainVocables extends Activity {
 
 
     // create and show AlertDialog
-    public void createDialogWindow(){
+    public void createDialogWindow() {
 
         // LayoutInflater is used to instantiate layout XML file into its
         // corresponding View object
@@ -206,7 +206,7 @@ public class TrainVocables extends Activity {
                         // get actual box number
                         int boxNumber = Integer.parseInt(boxNr);
                         // if box number < 3, change box number
-                        // if boxnumer is 3, don't change the box number, because there is no box 4
+                        // if boxnumer is 3, don't change the box number, because there are only 3 boxes
                         if (boxNumber < 3) {
                             boxNumber++;
                             trainVocable.setBoxNr(String.valueOf(boxNumber));
