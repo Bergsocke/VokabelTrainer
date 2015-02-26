@@ -38,16 +38,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
 
 
-
     // Konstruktor
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Datenbank neu erstellen
+    // Create database
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // SQL statement to create vocable table
+        // SQL statement to create vocabulary table
         String CREATE_VOCABLE_TABLE = "CREATE TABLE " + TABLE_NAME + "( " + KEY_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_THEWORD +  " TEXT, "+ KEY_TRANSLATION +
                 " TEXT, " + KEY_BOXNR + " TEXT);";
@@ -56,7 +55,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_VOCABLE_TABLE);
     }
 
-    // Datenbank Upgrade
+    // Upgrade database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older vocabulary table if existed
@@ -77,29 +76,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     }
 
 
-    // speichert eine neue Vokabel in die Datenbank
-    public void addVocable(Vocable vocable){
-
-        // get reference to writable DB
-        openDB();
-
-        // create ContentValues to add key "column"/value
-        ContentValues values = new ContentValues();
-        values.put(KEY_THEWORD, vocable.getTheWord());
-        values.put(KEY_TRANSLATION, vocable.getTranslation());
-        values.put(KEY_BOXNR, vocable.getBoxNr());
-
-        // insert vocable
-        db.insert(TABLE_NAME, null, values);
-
-        // close DB
-        closeDB();
-    }
-
-
     // Get all vocables
     public List<Vocable> getAllVocables() {
-        List<Vocable> vocables = new LinkedList<Vocable>();
+
+        // LinkedList - alle Listelemente stehen in Verbindung zum jeweiligen Vorgänger bzw. Nachfolger.
+        // Elemente können schneller hinzugefügt und gelöscht werden, da nur die Verweise auf die Nachbarn
+        // geändert werden müssen.
+        List<Vocable> vocablesList = new LinkedList<Vocable>();
 
         // build the query
         String query = "SELECT  * FROM " + TABLE_NAME;
@@ -107,6 +90,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         // get reference to writable DB
         openDB();
 
+        // Database queries are returned as Cursor objects
         Cursor cursor = db.rawQuery(query, null);
 
         Vocable vocable = null;
@@ -120,8 +104,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 vocable.setTranslation(cursor.getString(2));
                 vocable.setBoxNr(cursor.getString(3));
 
-                // Add vocable to vocables
-                vocables.add(vocable);
+                // Add vocable to vocablesList
+                vocablesList.add(vocable);
             } while (cursor.moveToNext());
         }
 
@@ -131,15 +115,20 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         // close DB
         closeDB();
 
-        // return vocables
-        return vocables;
+        // return vocablesList
+        return vocablesList;
     }
+
 
     // Get all vocables from selected box
     public List<Vocable> getAllVocablesBox(String boxNr) {
 
         String boxNumber = boxNr;
-        List<Vocable> vocables = new LinkedList<Vocable>();
+
+        // LinkedList - alle Listelemente stehen in Verbindung zum jeweiligen Vorgänger bzw. Nachfolger.
+        // Elemente können schneller hinzugefügt und gelöscht werden, da nur die Verweise auf die Nachbarn
+        // geändert werden müssen.
+        List<Vocable> vocablesList = new LinkedList<Vocable>();
 
         // build the query
         String query = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_BOXNR + " = " + boxNumber;
@@ -147,6 +136,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         // get reference to writable DB
         openDB();
 
+        // Database queries are returned as Cursor objects
         Cursor cursor = db.rawQuery(query,null);
 
         Vocable vocable = null;
@@ -160,8 +150,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 vocable.setTranslation(cursor.getString(2));
                 vocable.setBoxNr(cursor.getString(3));
 
-                // Add vocable to vocables
-                vocables.add(vocable);
+                // Add vocable to vocablesList
+                vocablesList.add(vocable);
             } while (cursor.moveToNext());
         }
 
@@ -171,10 +161,31 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         // close DB
         closeDB();
 
-        // return vocables
-        return vocables;
+        // return vocablesList
+        return vocablesList;
     }
 
+
+    // speichert eine neue Vokabel in die Datenbank
+    public void addVocable(Vocable vocable){
+
+        // get reference to writable DB
+        openDB();
+
+        // create ContentValues to add key "column"/value
+        // ContentValues are used to insert new rows into tables. Each ContentValues object
+        // represents a single table raw as a map of columns names to values
+        ContentValues values = new ContentValues();
+        values.put(KEY_THEWORD, vocable.getTheWord());
+        values.put(KEY_TRANSLATION, vocable.getTranslation());
+        values.put(KEY_BOXNR, vocable.getBoxNr());
+
+        // insert vocable into table
+        db.insert(TABLE_NAME, null, values);
+
+        // close DB
+        closeDB();
+    }
 
 
     // Updating single vocable
@@ -197,7 +208,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         // close DB
         closeDB();
-
     }
 
     // Deleting single vocable
@@ -211,6 +221,5 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         // close DB
        closeDB();
-
     }
 }

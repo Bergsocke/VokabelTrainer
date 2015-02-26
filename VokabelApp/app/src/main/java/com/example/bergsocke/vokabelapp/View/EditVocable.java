@@ -26,6 +26,8 @@ import java.util.List;
  * Created by Bergsocke on 04.01.15.
  */
 
+// ListActivity - class for Activities that feature a ListView bound to a data source
+
 public class EditVocable extends ListActivity {
 
     private Button btn_mainMenu;
@@ -68,6 +70,8 @@ public class EditVocable extends ListActivity {
 
                 vocableToUpdate = adapter.getItem(position);
 
+                // LayoutInflater is used to instantiate layout XML file into its
+                // corresponding View object
                 LayoutInflater inflater = LayoutInflater.from(context);
                 final View textEntry = inflater.inflate(R.layout.dialog_edit, null);
 
@@ -95,13 +99,12 @@ public class EditVocable extends ListActivity {
                                 vocableToUpdate.setTheWord(updatedWord.getText().toString());
                                 vocableToUpdate.setTranslation(updatedTranslation.getText().toString());
 
-                                // check new box nr.
                                 String tempBox = updatedBox.getText().toString();
-                                int nr = Integer.parseInt(tempBox);
+                                int tempNr = Integer.parseInt(tempBox);
 
                                 // Prüfung, ob Boxnummer nicht größer als "3" ist
-                                // ist die Boxnummer > 3, wird der neue Wert nicht übernommen
-                                if(nr < 3){
+                                // ist die Boxnummer < 4, wird der neue Wert übernommen
+                                if(tempNr < 4){
                                     // set new value
                                     vocableToUpdate.setBoxNr(updatedBox.getText().toString());
                                 }
@@ -126,9 +129,9 @@ public class EditVocable extends ListActivity {
 
                 builder.create();
                 builder.show();
-
             }
         });
+
 
         // go to MainActivity
         btn_mainMenu = (Button)findViewById(R.id.btn_mainMenu);
@@ -139,7 +142,5 @@ public class EditVocable extends ListActivity {
                 startActivity(intent);
             }
         });
-
     }
-
 }

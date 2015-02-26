@@ -39,7 +39,7 @@ public class TrainVocables extends Activity {
     private MySQLiteHelper db = new MySQLiteHelper(this);
 
     private List<Vocable> list;
-    private Vocable trainVocable;       // aktuelle Vokabel
+    private Vocable trainVocable;       // abzuarbeitende Vokabel
 
     private String boxNr;
     private Random randomGenerator;
@@ -52,7 +52,7 @@ public class TrainVocables extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.train_vocables);
 
-        // get BoxNr from view SelectBox
+        // get BoxNr from View SelectBox
         Intent i = getIntent();
         boxNr = i.getStringExtra("BoxNr");
 
@@ -61,7 +61,6 @@ public class TrainVocables extends Activity {
 
         // show a vocable on view
         showRandomVocable();
-
 
         // Button go to MainActivity
         btn_mainMenu = (Button) findViewById(R.id.btn_mainMenu);
@@ -72,7 +71,6 @@ public class TrainVocables extends Activity {
                 startActivity(intent);
             }
         });
-
     }
 
 
@@ -94,7 +92,7 @@ public class TrainVocables extends Activity {
             // get this vocable from location 0
             trainVocable = list.get(0);
 
-            // show vocable on the view
+            // show the vocable on the view
             theWord = (TextView) findViewById(R.id.txt_word);
             theWord.setText(trainVocable.getTheWord());
 
@@ -103,8 +101,9 @@ public class TrainVocables extends Activity {
             btn_showTranslation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // create AlertDialog and show translation
+
                     list.remove(trainVocable);
+                    // create AlertDialog and show translation
                     createDialogWindow();
                 }
             });
@@ -113,7 +112,6 @@ public class TrainVocables extends Activity {
             btn_nextWord = (Button) findViewById(R.id.btn_nextWord);
             btn_nextWord.setEnabled(false);
             btn_nextWord.setVisibility(View.INVISIBLE);
-
         }
         // Ist die Liste leer, wird ausgegeben, dass die Box leer ist bzw. alle Vokabeln der
         // Box bereits abgearbeitet sind
@@ -122,6 +120,7 @@ public class TrainVocables extends Activity {
             // show message
             theWord = (TextView) findViewById(R.id.txt_word);
             theWord.setTextColor(Color.parseColor("#FF0000"));
+            theWord.setTextSize(15);
             theWord.setText(R.string.txt_empty);
 
             // deactivate Buttons translation and next
@@ -131,9 +130,9 @@ public class TrainVocables extends Activity {
             btn_nextWord = (Button) findViewById(R.id.btn_nextWord);
             btn_nextWord.setEnabled(false);
             btn_nextWord.setVisibility(View.INVISIBLE);
-
         }
     }
+
 
     // create a random vocable from list
     public void createRandomVocable(){
@@ -160,7 +159,6 @@ public class TrainVocables extends Activity {
 
                 // create AlertDialog and show translation
                 createDialogWindow();
-
             }
         });
 
@@ -176,14 +174,16 @@ public class TrainVocables extends Activity {
 
                 // go to an other vocable
                 showRandomVocable();
-
             }
         });
     }
 
+
     // create and show AlertDialog
     public void createDialogWindow(){
 
+        // LayoutInflater is used to instantiate layout XML file into its
+        // corresponding View object
         LayoutInflater inflater = LayoutInflater.from(context);
         final View textEntry = inflater.inflate(R.layout.dialog_train, null);
 
@@ -198,14 +198,14 @@ public class TrainVocables extends Activity {
         // AlertDialog to show translation
         final AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setView(textEntry)
-                 // if translation is correct -> move vocable to next box
                 .setPositiveButton(R.string.btn_correct, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        // if translation is correct -> move vocable to next box
 
                         // get actual box number
                         int boxNumber = Integer.parseInt(boxNr);
-                        // if box number not greater than 3, change box number
+                        // if box number < 3, change box number
                         // if boxnumer is 3, don't change the box number, because there is no box 4
                         if (boxNumber < 3) {
                             boxNumber++;
@@ -219,11 +219,12 @@ public class TrainVocables extends Activity {
                         showRandomVocable();
                     }
                 })
+
                 // if translation ist not correct
                 .setNegativeButton(R.string.btn_not_correct, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // let vocable in the list and box -> do nothing with the vocable
+                        // don't change the box number
                         dialog.cancel();
                         // vocable delete from list
                         list.remove(trainVocable);
@@ -236,6 +237,5 @@ public class TrainVocables extends Activity {
         builder.create();
         // show DialogAlert
         builder.show();
-
     }
 }

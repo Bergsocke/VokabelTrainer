@@ -11,6 +11,7 @@ android:orientation="vertical"
         android:layout_height="wrap_content"
         android:text="@string/btn_add"
         android:id="@+id/btn_add"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal" />
 
     <ListView

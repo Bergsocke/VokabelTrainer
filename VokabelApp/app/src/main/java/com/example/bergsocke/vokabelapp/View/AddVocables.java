@@ -25,10 +25,12 @@ import java.util.List;
  * Created by Bergsocke on 04.01.15.
  */
 
+// ListActivity - class for Activities that feature a ListView bound to a data source
+
 public class AddVocables extends ListActivity {
 
-    private EditText theWord;
-    private EditText translation;
+    private EditText theWord;           // Vokabel
+    private EditText translation;       // jeweilige Übersetzung
     private EditText boxNr;
 
     private String newWord;
@@ -38,6 +40,7 @@ public class AddVocables extends ListActivity {
     private Button btn_add;
     private Button btn_mainMenu;
 
+    // Schnittstelle für Activites und Services zur Laufzeitumgebung (Umgebung der Anwendung)
     private final Context context = this;
 
     private MySQLiteHelper db = new MySQLiteHelper(this);
@@ -64,10 +67,12 @@ public class AddVocables extends ListActivity {
             @Override
             public void onClick(View v) {
 
-                // Erzeugung AlertDialog, um neue Daten eingeben zu können
-
+                // LayoutInflater is used to instantiate layout XML file into its
+                // corresponding View object
                 LayoutInflater inflater = LayoutInflater.from(context);
                 final View textEntry = inflater.inflate(R.layout.dialog_edit, null);
+
+                // AlertDialog, um neue Daten eingeben zu können
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context)
                         .setView(textEntry)
@@ -107,6 +112,7 @@ public class AddVocables extends ListActivity {
 
                             }
                         })
+
                         // Abbrechen-Button
                         .setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
                             @Override
@@ -130,6 +136,5 @@ public class AddVocables extends ListActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

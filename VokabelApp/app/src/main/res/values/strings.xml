@@ -8,7 +8,7 @@
     <string name="btn_train">Vokabel trainieren</string>
     <string name="btn_edit">Vokabeln bearbeiten</string>
     <string name="btn_add_vocable">Vokabeln hinzufuegen</string>
-    <string name="btn_delete_vocable">Vokabeln loeschen</string>
+    <string name="btn_delete_vocable">Vokabeln löschen</string>
     <string name="btn_showAll">Alle Vokabeln anzeigen</string>
 
     <string name="btn_box1">Box 1</string>
@@ -23,15 +23,15 @@
     <string name="btn_save">Speichern</string>
     <string name="btn_cancel">Abbrechen</string>
 
-    <string name="btn_add">Vokabel hinzufuegen</string>
-    <string name="btn_delete">Vokabel loeschen</string>
+    <string name="btn_add">Vokabel hinzufügen</string>
+    <string name="btn_delete">Vokabel löschen</string>
 
     <string name="btn_mainMenu">Hauptmenue</string>
     <string name="btn_start">Start Training</string>
 
     <string name="txt_selectItem">Vokabel auswählen/anklicken</string>
 
-    <string name="btn_showTranslation">Uebersetzung</string>
+    <string name="btn_showTranslation">Übersetzung</string>
     <string name="btn_trainEnd">Training beenden</string>
     <string name="btn_next">Anderes Wort</string>
 
@@ -41,6 +41,7 @@
     <string name="txt_empty">Die Box ist leer. Alle Vokabeln sind abgearbeitet worden</string>
 
     <string name="txt_selectBox">Box auswählen</string>
+    <string name="txt_delete">Vokabel wurde gelöscht</string>
 
 
 </resources>
