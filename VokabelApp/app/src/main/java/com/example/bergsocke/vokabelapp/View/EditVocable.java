@@ -21,7 +21,7 @@ import com.example.bergsocke.vokabelapp.R;
 import java.util.List;
 
 /**
- * Activity to update selected vovable
+ * Activity to update selected vocable
  *
  * Created by Bergsocke on 04.01.15.
  */
@@ -90,7 +90,7 @@ public class EditVocable extends ListActivity {
                         .setPositiveButton(R.string.btn_save, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                // get update data
+                                // get updated data
                                 updatedWord = (EditText) textEntry.findViewById(R.id.txt_word);
                                 updatedTranslation = (EditText) textEntry.findViewById(R.id.txt_translation);
                                 updatedBox = (EditText) textEntry.findViewById(R.id.txt_box);
