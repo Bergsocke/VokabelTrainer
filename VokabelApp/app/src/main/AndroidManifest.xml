@@ -19,23 +19,28 @@
 
 
         <activity android:name=".View.ShowAllVocables"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light"
+            android:label="@string/btn_showAll"/>
 
         <activity android:name=".View.SelectBox"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light"
+            android:label="@string/txt_selectBox" />
 
         <activity android:name=".View.TrainVocables"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light"
+            android:label="@string/btn_train" />
 
         <activity android:name=".View.AddVocables"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light"
+            android:label="@string/btn_add" />
 
         <activity android:name=".View.DeleteVocable"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light"
+            android:label="@string/btn_delete" />
 
         <activity android:name=".View.EditVocable"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
-
+            android:theme="@android:style/Theme.Light"
+            android:label="@string/btn_edit" />
 
     </application>
 
