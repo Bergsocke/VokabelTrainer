@@ -59,7 +59,8 @@ public class Vocable {
 
     // Will be used by the ArrayAdapter in the ListView
     public String toString() {
-        return id + ": " + theWord + ", " + translation + ", " + boxNr;
+        return theWord + " ... " + translation + " ... Box " + boxNr;
     }
+
 }
 

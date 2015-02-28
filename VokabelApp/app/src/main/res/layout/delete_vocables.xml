@@ -21,6 +21,7 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:text=""
+        android:layout_marginLeft="10dp"
         android:layout_height="411dp"/>
 
     <Button
