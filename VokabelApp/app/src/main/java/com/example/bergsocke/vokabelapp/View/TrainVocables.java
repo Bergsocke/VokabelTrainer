@@ -206,7 +206,7 @@ public class TrainVocables extends Activity {
                         // get actual box number
                         int boxNumber = Integer.parseInt(boxNr);
                         // if box number < 3, change box number
-                        // if boxnumer is 3, don't change the box number, because there are only 3 boxes
+                        // if boxnumer = 3, don't change the box number, because there are only 3 boxes
                         if (boxNumber < 3) {
                             boxNumber++;
                             trainVocable.setBoxNr(String.valueOf(boxNumber));
@@ -224,8 +224,10 @@ public class TrainVocables extends Activity {
                 .setNegativeButton(R.string.btn_not_correct, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // don't change the box number
-                        dialog.cancel();
+                        // BoxNr wird auf "1" gesetzt
+                        trainVocable.setBoxNr(String.valueOf(1));
+                        // save updated vocable in DB
+                        db.updateVocable(trainVocable);
                         // vocable delete from list
                         list.remove(trainVocable);
                         // show the next vocable
